@@ -218,13 +218,19 @@ img {
 }
 
 @media screen and (max-width: 600px) {
-    .product-container {
-        width: 100%;
+    .invisible-box {
+        width: 80%; /* Adjust the width for smaller screens */
+        height: 40%; /* Adjust the height for smaller screens */
+        max-height: 300px; /* Set a maximum height if necessary for smaller screens */
     }
 
     .bottom-box {
         width: 80%; /* Adjust the width for smaller screens */
         padding: 4vw; /* Adjust padding for smaller screens */
         font-size: 4vw; /* Adjust font size for smaller screens */
+    }
+
+    .product-container {
+        width: 100%;
     }
 }
