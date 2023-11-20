@@ -24,7 +24,7 @@ function populateProductForm() {
         formHTML += `
             <label for="quantity_textbox_${i}">Quantity desired:</label>
             <div class="quantity-container">
-                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" onkeyup="checkQuantityTextbox(this, ${products[i].qty_available})">
+                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" oninput="checkQuantityTextbox(this, ${products[i].qty_available})">
                 <br>
                 <span id="quantity_textbox${i}_message">Enter a valid quantity</span>
             </div>`;
