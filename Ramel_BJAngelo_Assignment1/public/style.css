@@ -223,9 +223,8 @@ img {
     }
 
     .bottom-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60px; /* Adjust the height as needed */
+        width: 80%; /* Adjust the width for smaller screens */
+        padding: 4vw; /* Adjust padding for smaller screens */
+        font-size: 4vw; /* Adjust font size for smaller screens */
     }
 }
