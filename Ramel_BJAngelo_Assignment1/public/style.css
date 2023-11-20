@@ -215,6 +215,10 @@ img {
     .product-container {
         width: calc(50% - 20px);
     }
+
+    .invoice-container {
+        width: calc(50% - 20px);
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -233,4 +237,9 @@ img {
     .product-container {
         width: 100%;
     }
+
+    .invoice-container {
+        width: 100%;
+    }
 }
+
