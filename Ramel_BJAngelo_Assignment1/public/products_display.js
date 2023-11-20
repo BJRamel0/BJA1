@@ -24,7 +24,7 @@ function populateProductForm() {
         formHTML += `
             <label for="quantity_textbox_${i}">Quantity desired:</label>
             <div class="quantity-container">
-                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" onkeyup="checkQuantityTextbox(this, ${products[i].qty_available})">
+                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" onkeyup="checkQuantityTextbox(this, ${products[i].qty_available}, ${i})">
                 <br>
                 <span id="quantity_textbox${i}_message">Enter a valid quantity</span>
             </div>`;
@@ -62,8 +62,8 @@ function checkQuantityTextbox(theTextbox, availableQuantity, index) {
         theTextbox.parentElement.style.borderColor = "red";
     } else {
         errorSpan.innerHTML = "Enter a valid quantity"; // Default message
-        errorSpan.style.color = "black";
-        theTextbox.parentElement.style.borderColor = "black";
+        errorSpan.style.color = "#20C20E"; // Match the color in your CSS
+        theTextbox.parentElement.style.borderColor = "#20C20E"; // Match the color in your CSS
     }
 }
 
@@ -72,17 +72,12 @@ function validateQuantity(quantity, availableQuantity) {
     // Initialize an empty array to store error messages
     const errors = [];
 
-    // Convert quantity to a number
-
-    // Reset the errors array
-    errors.length = 0;
-
     // Use a switch statement to check various conditions
     switch (true) {
         case isNaN(quantity) || quantity === "":
             errors.push("Not a number");
             break;
-        case quantity < 0 && !Number.isInteger(quantityValue):
+        case quantity < 0 && !Number.isInteger(quantity):
             errors.push("Negative inventory and not an Integer");
             break;
         case quantity < 0:
@@ -107,3 +102,16 @@ function validateQuantity(quantity, availableQuantity) {
         return null; // Return null if no validation errors
     }
 }
+
+// Add event listeners to the quantity textboxes
+document.addEventListener("DOMContentLoaded", function () {
+    // Assuming you have multiple quantity textboxes with the class "quantity-textbox"
+    const quantityTextboxes = document.querySelectorAll(".quantity-textbox");
+
+    quantityTextboxes.forEach(function (textbox, index) {
+        textbox.addEventListener("input", function () {
+            // Reset the styling and message when the user corrects the input
+            checkQuantityTextbox(textbox, products[index].qty_available, index);
+        });
+    });
+});
