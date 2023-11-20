@@ -46,14 +46,14 @@ window.onload = function () {
 }
 
 // Function to check the quantity textbox
-function checkQuantityTextbox(theTextbox, availableQuantity) {
+function checkQuantityTextbox(theTextbox, availableQuantity, index) {
     let inputValue = Number(theTextbox.value);
 
     // Validate the user input quantity using the updated validateQuantity function
     let errorMessages = validateQuantity(inputValue, availableQuantity);
 
     // Assuming theTextbox.name is in the format "quantityN"
-    let errorSpan = document.getElementById(theTextbox.id + '_message');
+    let errorSpan = document.getElementById(`quantity_textbox${index}_message`);
 
     // Check if there are any error messages and update the display
     if (errorMessages && errorMessages.length > 0) {
