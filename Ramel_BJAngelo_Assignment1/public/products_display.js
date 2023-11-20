@@ -24,7 +24,7 @@ function populateProductForm() {
         formHTML += `
             <label for="quantity_textbox_${i}">Quantity desired:</label>
             <div class="quantity-container">
-                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" oninput="checkQuantityTextbox(this, ${products[i].qty_available})">
+                <input type="text" class="textbox" id="quantity${i}" name="quantity_textbox[]" onkeyup="checkQuantityTextbox(this, ${products[i].qty_available})">
                 <br>
                 <span id="quantity_textbox${i}_message">Enter a valid quantity</span>
             </div>`;
@@ -73,26 +73,25 @@ function validateQuantity(quantity, availableQuantity) {
     const errors = [];
 
     // Convert quantity to a number
-    let quantityValue = Number(quantity);
 
     // Reset the errors array
     errors.length = 0;
 
     // Use a switch statement to check various conditions
     switch (true) {
-        case isNaN(quantityValue) || quantityValue === "":
+        case isNaN(quantity) || quantity === "":
             errors.push("Not a number");
             break;
-        case quantityValue < 0 && !Number.isInteger(quantityValue):
+        case quantity < 0 && !Number.isInteger(quantityValue):
             errors.push("Negative inventory and not an Integer");
             break;
-        case quantityValue < 0:
+        case quantity < 0:
             errors.push("Negative inventory");
             break;
-        case !Number.isInteger(quantityValue):
+        case !Number.isInteger(quantity):
             errors.push("Not an Integer");
             break;
-        case quantityValue > availableQuantity:
+        case quantity > availableQuantity:
             errors.push("Insufficient stock");
             break;
 
@@ -102,5 +101,9 @@ function validateQuantity(quantity, availableQuantity) {
     }
 
     // Return the errors array if there are any validation errors
-    return errors;
+    if (errors.length > 0) {
+        return errors;
+    } else {
+        return null; // Return null if no validation errors
+    }
 }
