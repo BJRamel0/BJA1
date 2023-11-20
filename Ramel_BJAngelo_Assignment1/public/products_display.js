@@ -102,9 +102,5 @@ function validateQuantity(quantity, availableQuantity) {
     }
 
     // Return the errors array if there are any validation errors
-    if (errors.length > 0) {
-        return errors;
-    } else {
-        return null; // Return null if no validation errors
-    }
+    return errors;
 }
